@@ -1,6 +1,6 @@
 # **🧠 SmartScan AI: A Production-Ready AI Microservice**
 
-This repository contains the Python-based AI microservice for the **[SmartScan AI](https://www.google.com/search?q=https://github.com/your-repo/smartscan-ai-fullstack-repo)** project. It is a critical component that demonstrates the ability to deploy and optimize a machine learning model as a scalable web service, serving requests from a Node.js API gateway.
+This repository contains the Python-based AI microservice for the **[SmartScan AI](https://python-backend-server-8nsy.onrender.com)** project. It is a critical component that demonstrates the ability to deploy and optimize a machine learning model as a scalable web service, serving requests from a Node.js API gateway.
 
 ## **🔑 Key Skills Demonstrated**
 
