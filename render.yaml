@@ -3,7 +3,7 @@ services:
     name: smartscan-ai-python
     env: python
     buildCommand: ""
-    startCommand: python caption_server.py
+    startCommand: python app.py
     plan: starter
     envVars:
       - key: PORT
