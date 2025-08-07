@@ -10,6 +10,24 @@ app = Flask(__name__)
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
+# ✅ ADD ROOT ROUTE
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "SmartScan AI Python Backend is running!",
+        "status": "healthy",
+        "endpoints": {
+            "/": "Health check",
+            "/local-caption": "POST - Generate image captions"
+        },
+        "version": "1.0.0"
+    })
+
+# ✅ ADD HEALTH CHECK
+@app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "healthy", "service": "python-backend"})
+
 @app.route("/local-caption", methods=["POST"])
 def local_caption():
     data = request.get_json()
