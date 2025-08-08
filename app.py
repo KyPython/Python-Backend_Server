@@ -7,11 +7,9 @@ import os
 
 app = Flask(__name__)
 
-# Load the model and processor
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base")
 
-# ✅ ADD ROOT ROUTE - This is what's missing!
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({
@@ -27,7 +25,6 @@ def home():
         "version": "1.0.0"
     })
 
-# ✅ ADD HEALTH CHECK
 @app.route("/health", methods=["GET"])
 def health():
     return jsonify({
@@ -50,8 +47,13 @@ def local_caption():
 
         print(f"Processing image: {image_url}")
 
+        # ✅ Fix: Add User-Agent header to avoid 403 errors
+        headers = {
+            'User-Agent': 'SmartScan-AI/1.0 (https://smartscan-ai.com; contact@smartscan-ai.com)'
+        }
+        
         # Download and process the image
-        response = requests.get(image_url, timeout=10)
+        response = requests.get(image_url, timeout=10, headers=headers)
         response.raise_for_status()
         
         image = Image.open(BytesIO(response.content)).convert("RGB")
